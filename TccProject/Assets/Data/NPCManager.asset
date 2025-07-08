@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6453c99afbeee3e42a29c7eaa57e68d2, type: 3}
   m_Name: NPCManager
   m_EditorClassIdentifier: 
-  CharName: 
-  Sprite: {fileID: 0}
+  CharName: npc
+  Sprite: {fileID: 21300000, guid: a01f5a3dcdb12064f8f3a1975ba5b673, type: 3}

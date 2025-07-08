@@ -12,7 +12,7 @@ public class GameEvents : MonoBehaviour
     public void Awake() => Instance = this;
     
     public event Action<DialogoSo> OnStartDialog;
-    public void StartDialog(DialogoSo DialogData) => OnStartDialog?.Invoke(DialogData);
+    public void StartDialog(DialogoSo dialogData) => OnStartDialog?.Invoke(dialogData);
 
     public event Action OnfinishDialog;
 

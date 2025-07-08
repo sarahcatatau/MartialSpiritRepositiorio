@@ -4,20 +4,27 @@ using System;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class GD_InteractObject : MonoBehaviour {
-    [SerializeField] DialogoSo DialogData;
+public class GD_InteractObject : MonoBehaviour
+{
+
     public string interactionText = "Interact";
     public UnityEvent onInteract;
-    
 
+    [SerializeField] DialogoSo dialogData;
 
-    public string GetInteractionText() {
+    public string GetInteractionText()
+    {
         return interactionText;
     }
 
-    public void Interact() {
+    public void Interact()
+    {
         onInteract.Invoke();
-        GameEvents.Instance.StartDialog(DialogData);
+
     }
+    public void GetStartDialog()
+    {
+        GameEvents.Instance.StartDialog(dialogData);
+     }
    
 }

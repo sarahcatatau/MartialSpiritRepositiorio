@@ -1,13 +1,17 @@
 using UnityEngine;
 using TMPro;
 using System.Collections.Generic;
+using UnityEngine.UI;
+using System;
 
 public class GD_PlayerInteract : MonoBehaviour
 {
-    public float InteractionDistance = 4f;
+    public float InteractionDistance = 2f;
     public GameObject interactionText;
-    private GD_InteractObject currentInteractable;
+    [SerializeField] GD_InteractObject currentInteractable;
     private List<GD_InteractObject> interactablesInRange = new List<GD_InteractObject>();
+
+    
 
     void Start()
     {
@@ -19,7 +23,7 @@ public class GD_PlayerInteract : MonoBehaviour
 
     void Update()
     {
-        //OnInteract(); // Chama OnInteract em Update para verificar a interação
+        // Chama OnInteract em Update para verificar a interação
         if (Input.GetKeyDown(KeyCode.E) && currentInteractable != null)
         {
             Interact();
@@ -29,6 +33,7 @@ public class GD_PlayerInteract : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         GD_InteractObject interactableObject = other.GetComponent<GD_InteractObject>();
+
         if (interactableObject != null)
         {
             interactablesInRange.Add(interactableObject);
@@ -56,6 +61,8 @@ public class GD_PlayerInteract : MonoBehaviour
     {
         currentInteractable = interactable;
         ShowInteractionText();
+        GD_InteractObject objectInteract = currentInteractable.GetComponent<GD_InteractObject>();
+        objectInteract.GetStartDialog();
     }
 
     private void RemoveCurrentInteractable()
@@ -83,6 +90,7 @@ public class GD_PlayerInteract : MonoBehaviour
 
     public void Interact()
     {
+        
         if (currentInteractable != null)
         {
             // Envia uma mensagem para o script GD_ObjectInteract
@@ -90,7 +98,7 @@ public class GD_PlayerInteract : MonoBehaviour
             if (objectInteract != null)
             {
                 objectInteract.Interact(); // Chama o método Interact diretamente
-            }
+            } 
 
             // Descomente a linha a seguir se quiser destruir o objeto após a interação
             // if (currentInteractable.GetInteractionText() == "porta de sair") Destroy(currentInteractable.gameObject, 2);
